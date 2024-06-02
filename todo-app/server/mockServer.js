@@ -14,13 +14,15 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: ['http://localhost:3000', 'https://todoapp-3-0gtx.onrender.com'], // Allow requests from both origins
 }));
+// app.use(cors(
+// ));
 
 // Dummy users data 
 const users = [
   { id: 1, username: 'user', password: 'pass' },
 ];
 
-const jwtSecret = process.env.JWT_SECRET || 'default_secret';
+const jwtSecret = process.env.JWT_SECRET || 'secretCode';
 
 
 app.post('/api/login', (req, res) => {
