@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -18,7 +18,7 @@ const users = [
   { id: 1, username: 'user', password: 'pass' },
 ];
 
-const jwtSecret = 'secretcode';
+const jwtSecret = process.env.JWT_SECRET || 'default_secret';
 
 
 app.post('/api/login', (req, res) => {
