@@ -10,13 +10,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('./assets/bg5.jpeg');
+    background-image: url('./assets/bg11.jpeg');
   }
   
   .imageBox {
     width: 60%; /* Adjust the width as needed */
     background-size: cover;
     background-position: center;
+    border-left: 4px solid black;
   }
   
   /* Additional styles for your login box */
@@ -65,7 +66,27 @@
     text-align: center;
     letter-spacing: 2px;
     margin-top: 40%;
+    font-family: Ubuntu;
+    font-size: 45px;
   }
   
+
+  .typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 40% auto;
+    letter-spacing: 0.15em; /* Adjust the letter spacing */
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+  }
 
   

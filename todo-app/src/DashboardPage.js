@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { todos as mockTodos } from './mockData';
 import './DashboardPage.css'; // Import CSS file
-import { DeleteIcon, AddIcon, EditIcon } from '@chakra-ui/icons'
+import { DeleteIcon, SmallAddIcon, EditIcon,CloseIcon} from '@chakra-ui/icons'
 
 const DashboardPage = ({ setIsLoggedIn }) => {
   const [todos, setTodos] = useState(mockTodos);
@@ -35,7 +35,7 @@ const DashboardPage = ({ setIsLoggedIn }) => {
 
   const handleEditTask = (task) => {
     setEditingTask(task.id);
-    setEditedTask({ title: task.title, description: task.description, status: task.status });
+    setEditedTask({ ...task });
   };
 
   const handleUpdateTask = (taskId) => {
@@ -55,38 +55,38 @@ const DashboardPage = ({ setIsLoggedIn }) => {
   return (
     <div className="dashboard-container">
       <div className='navbar'>
-      <h2 className='dashboard'>DashBoard</h2>
-      <button className = "btn-logout" onClick={() => setIsLoggedIn(false)}>Logout</button>
+        <h2 className='dashboard' style={{fontFamily : "Lobster"}}><img src= "/logo.png" alt = "" className = "logo"/>Task Master</h2>
+        <button className="btn-logout" onClick={() => setIsLoggedIn(false)}>Logout</button>
       </div>
       <div className='handletodo'>
-      <div class = "addTask">
-      <h3>Add Task</h3>
-      <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
-        <input
-        id = "taskTitle"
-          type="text"
-          placeholder="Task title"
-          value={newTask.title}
-          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-        />
-        <input
-         id = "taskDes"
-          type="text"
-          placeholder="Task description"
-          value={newTask.description}
-          onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-        />
-        <button type="submit" id = "btn-add" style={{ }}><AddIcon color={'white'} boxSize={'10px'}/></button>
-      </form>
-      </div>
+        <div class="addTask">
+          <h3>Add Task</h3>
+          <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
+            <input
+              id="taskTitle"
+              type="text"
+              placeholder="Task title"
+              value={newTask.title}
+              onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+            />
+            <input
+              id="taskDes"
+              type="text"
+              placeholder="Task description"
+              value={newTask.description}
+              onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+            />
+            <button type="submit" id="btn-add" style={{}}>Add <SmallAddIcon color={'white'} boxSize={'15px'} /> </button>
+          </form>
+        </div>
 
-      {/* <h3>Search Tasks</h3> */}
-      <input id = "search"
-        type="text"
-        placeholder="Search todos"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+        {/* <h3>Search Tasks</h3> */}
+        <input id="search"
+          type="text"
+          placeholder="Search todos"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
 
       <h1>Todo List</h1>
@@ -94,18 +94,44 @@ const DashboardPage = ({ setIsLoggedIn }) => {
         {filteredTodos.map(todo => (
           <li key={todo.id} className="todo-item">
             <div>
-              <input id = "check"
-                type="checkbox"
-                checked={todo.status === 'Completed'}
-                onChange={() => handleCheckboxChange(todo.id)}
-              />
-              <strong>{todo.title}</strong>
-              <p style={{ textDecoration: todo.status === 'Completed' ? 'line-through' : 'none' }}>{todo.description}</p>
+              {editingTask === todo.id ? (
+                <div class = "update">
+                  <input
+                    className = "updateTask"
+                    id = "updateTaskTitle"
+                    type="text"
+                    value={editedTask.title}
+                    onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })}
+                  />
+                  <input
+                    className = "updateTask"
+                    id = "updateTaskDes"
+                    type="text"
+                    value={editedTask.description}
+                    onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
+                  />
+                  <button className="func-update btn-func" onClick={() => handleUpdateTask(todo.id)}><EditIcon/></button>
+                  <button className="func-cancel btn-func" onClick={() => setEditingTask(null)}><CloseIcon boxSize={8}/></button>
+                </div>
+              ) : (
+                <div>
+                  <input
+                    id="check"
+                    type="checkbox"
+                    checked={todo.status === 'Completed'}
+                    onChange={() => handleCheckboxChange(todo.id)}
+                  />
+                  <strong>{todo.title}</strong>
+                  <p style={{ textDecoration: todo.status === 'Completed' ? 'line-through' : 'none' }}>{todo.description}</p>
+                </div>
+              )}
             </div>
-            <div className = "func">
-              <button  className = "func-update btn-func"onClick={() => handleEditTask(todo)}><EditIcon /></button>
-              <button className = "func-delete btn-func" onClick={() => handleDeleteTask(todo.id)}><DeleteIcon/></button>
-              <span id ="status" className={`todo-item ${todo.status}`}>Status: {todo.status || "Pending"}</span>
+            <div className="func">
+              {!editingTask && (
+                <button className="func-edit btn-func" onClick={() => handleEditTask(todo)}><EditIcon /></button>
+              )}
+              <button className="func-delete btn-func" onClick={() => handleDeleteTask(todo.id)}><DeleteIcon /></button>
+              <span id="status" className={`todo-item ${todo.status || "Pending"}`}>Status: {todo.status || "Pending"}</span>
             </div>
           </li>
         ))}

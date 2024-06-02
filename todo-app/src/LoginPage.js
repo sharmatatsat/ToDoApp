@@ -55,7 +55,7 @@ const LoginPage = ({ handleLogin }) => {
         </form>
       </div>
       <div className="imageBox" style={{ backgroundImage: `url(${bg6})` }}>
-        <h1 className='welcome'>Welcome To Task Master !</h1>
+        <h1 className='welcome typing-animation'>Welcome To Task Master !</h1>
       </div>
     </div>
   );
