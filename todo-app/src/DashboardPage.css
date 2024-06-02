@@ -2,9 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Changed to flex-start to keep items starting from the top */
     min-height: 100vh;
     padding: 20px;
+    background-image: url('./assets/bg11.jpeg');
+    padding-top: 80px; /* Added padding-top to avoid overlap with fixed navbar */
   }
   
   .todo-list {
@@ -35,15 +37,119 @@
     cursor: pointer;
   }
   
-  .func button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  .func-update:hover {
+    background-color: rgb(255, 255, 0);
+  }
+  .func-delete:hover {
+    background-color: red;
   }
   
   #status {
     margin-left: 10px;
-  }
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+}
   
   #check {
     margin-right: 10px; /* Add space between checkbox and task title */
   }
   
+
+  .todo-item.Completed {
+    background-color: #4CAF50; /* Green background for completed tasks */
+  }
+  
+  .todo-item.Pending {
+    background-color: yellow; /* Yellow background for pending tasks */
+  }
+
+  .navbar{
+    display : flex;
+    justify-content: space-between;
+    /* padding: 10 20px; */
+    /* border: 2px solid red; */
+    width: 105%;
+    height: 68px;
+    margin: 0px 0px;
+    background-image: url('./assets/bg9.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -6%;
+    border-bottom: 4px solid black;
+  }
+ 
+
+ .btn-logout{
+    height: 30px;
+    width: 8%;
+    margin-top: 1.5%;
+    margin-right:2%;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    border-radius: 8px;
+ }
+ .btn-logout:hover{
+    background-color: red;
+    cursor: pointer;
+    border: none;
+ }
+
+ .dashboard{
+    margin-left: 2%;
+    color:black;
+    font-weight: bold;
+ }
+
+
+ .handletodo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    /* border: 2px solid red; */
+  }
+  
+  .add-task-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #search {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+
+  .addTask{
+    margin: 0px 5px;
+    width: 40%;
+    /* border: 2px solid red; */
+  }
+
+  #taskTitle{
+    margin-right: 4%;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #taskDes{
+    margin-right: 2%;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  #btn-add{
+    border: none;
+    background-color : black ;
+    margin-left : 4%;
+  }
+  #btn-add:hover{
+        cursor: pointer;
+        background-color: green;
+  }

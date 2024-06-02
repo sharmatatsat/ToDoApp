@@ -56,6 +56,16 @@
   .btn-submit:hover {
     background-color: #45a049;
   }
+
+  .welcome{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 40%;
+  }
   
 
   

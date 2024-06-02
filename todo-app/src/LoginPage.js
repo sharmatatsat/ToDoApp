@@ -54,7 +54,9 @@ const LoginPage = ({ handleLogin }) => {
           <button class = "btn-submit" type="submit">Login</button>
         </form>
       </div>
-      <div className="imageBox" style={{ backgroundImage: `url(${bg6})` }}></div>
+      <div className="imageBox" style={{ backgroundImage: `url(${bg6})` }}>
+        <h1 className='welcome'>Welcome To Task Master !</h1>
+      </div>
     </div>
   );
 };

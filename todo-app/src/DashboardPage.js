@@ -54,35 +54,42 @@ const DashboardPage = ({ setIsLoggedIn }) => {
 
   return (
     <div className="dashboard-container">
-      <h2>Dashboard</h2>
-      <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-
+      <div className='navbar'>
+      <h2 className='dashboard'>DashBoard</h2>
+      <button className = "btn-logout" onClick={() => setIsLoggedIn(false)}>Logout</button>
+      </div>
+      <div className='handletodo'>
+      <div class = "addTask">
       <h3>Add Task</h3>
       <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
         <input
+        id = "taskTitle"
           type="text"
           placeholder="Task title"
           value={newTask.title}
           onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
         />
         <input
+         id = "taskDes"
           type="text"
           placeholder="Task description"
           value={newTask.description}
           onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
         />
-        <button type="submit">Add Task</button>
+        <button type="submit" id = "btn-add" style={{ }}><AddIcon color={'white'} boxSize={'10px'}/></button>
       </form>
+      </div>
 
-      <h3>Search Tasks</h3>
-      <input
+      {/* <h3>Search Tasks</h3> */}
+      <input id = "search"
         type="text"
         placeholder="Search todos"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      </div>
 
-      <h3>Todo List</h3>
+      <h1>Todo List</h1>
       <ul className="todo-list">
         {filteredTodos.map(todo => (
           <li key={todo.id} className="todo-item">
@@ -98,7 +105,7 @@ const DashboardPage = ({ setIsLoggedIn }) => {
             <div className = "func">
               <button  className = "func-update btn-func"onClick={() => handleEditTask(todo)}><EditIcon /></button>
               <button className = "func-delete btn-func" onClick={() => handleDeleteTask(todo.id)}><DeleteIcon/></button>
-              <span id ="status">Status: {todo.status || "Pending"}</span>
+              <span id ="status" className={`todo-item ${todo.status}`}>Status: {todo.status || "Pending"}</span>
             </div>
           </li>
         ))}
