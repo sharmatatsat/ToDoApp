@@ -1,7 +1,12 @@
-// LoginPage.js
 import React, { useState } from 'react';
+import './LoginPage.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+// import bg1 from './assets/bg1.jpeg'; // Import the image
+ import bg6 from './assets/bg6-edited.jpeg';
+  // Import the image
+ // Import the image
+// import bg4 from './assets/bg4.jpeg'; // Import the image
 
 const LoginPage = ({ handleLogin }) => {
   const [username, setUsername] = useState('');
@@ -13,8 +18,8 @@ const LoginPage = ({ handleLogin }) => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', { username, password });
       const { token } = response.data;
-      localStorage.setItem('token', token); // Store the token in localStorage
-      handleLogin(); // Call handleLogin function from props
+      localStorage.setItem('token', token); 
+      handleLogin(); 
       history.push('/dashboard');
     } catch (error) {
       alert('Invalid username or password');
@@ -22,29 +27,34 @@ const LoginPage = ({ handleLogin }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+    <div className="container">
+      <div className="loginBox">
+        <h2 id="loginText">L O G I N</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              placeholder="Username"
+            />
+          </div>
+          <div>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Password"
+            />
+          </div>
+          <button class = "btn-submit" type="submit">Login</button>
+        </form>
+      </div>
+      <div className="imageBox" style={{ backgroundImage: `url(${bg6})` }}></div>
     </div>
   );
 };

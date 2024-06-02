@@ -1,6 +1,6 @@
 // src/components/TodoApp.js
 import React, { useState } from "react";
-import { todos } from "./mockData";
+import { todos } from "../mockData";
 
 const TodoApp = () => {
   const [searchQuery, setSearchQuery] = useState("");

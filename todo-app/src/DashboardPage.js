@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { todos as mockTodos } from './mockData';
+import './DashboardPage.css'
 
 const DashboardPage = ({ setIsLoggedIn }) => {
   const [todos, setTodos] = useState(mockTodos);
@@ -49,77 +50,78 @@ const DashboardPage = ({ setIsLoggedIn }) => {
     todo.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     todo.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  return (
-    <div>
-      <h2>Dashboard</h2>
-      <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-
-      <h3>Add Task</h3>
-      <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
+  
+    return (
+      <div className="dashboard-container">
+        <h2>Dashboard</h2>
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+  
+        <h3>Add Task</h3>
+        <form onSubmit={(e) => { e.preventDefault(); handleAddTask(); }}>
+          <input
+            type="text"
+            placeholder="Task title"
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Task description"
+            value={newTask.description}
+            onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+          />
+          <button type="submit">Add Task</button>
+        </form>
+  
+        <h3>Search Tasks</h3>
         <input
           type="text"
-          placeholder="Task title"
-          value={newTask.title}
-          onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+          placeholder="Search todos"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Task description"
-          value={newTask.description}
-          onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
-        />
-        <button type="submit">Add Task</button>
-      </form>
-
-      <h3>Search Tasks</h3>
-      <input
-        type="text"
-        placeholder="Search todos"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-
-      <h3>Todo List</h3>
-      <ul>
-        {filteredTodos.map(todo => (
-          <li key={todo.id}>
-            {editingTask === todo.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={editedTask.title}
-                  onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editedTask.description}
-                  onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
-                />
-                <button onClick={() => handleUpdateTask(todo.id)}>Update</button>
-                <button onClick={() => setEditingTask(null)}>Cancel</button>
-              </div>
-            ) : (
-              <div>
-                <input
-                  type="checkbox"
-                  checked={todo.status === 'completed'}
-                  onChange={() => handleCheckboxChange(todo.id)}
-                />
-                <strong>{todo.title}</strong>
-                <p style={{ textDecoration: todo.status === 'completed' ? 'line-through' : 'none' }}>
-                  {todo.description}
-                </p>
-                <span>Status: {todo.status || "pending"}</span>
-                <button onClick={() => handleEditTask(todo)}>Edit</button>
-                <button onClick={() => handleDeleteTask(todo.id)}>Delete</button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+  
+        <h3>Todo List</h3>
+        <ul className="todo-list">
+          {filteredTodos.map(todo => (
+            <li key={todo.id} className="todo-item">
+              {editingTask === todo.id ? (
+                <div>
+                  <input
+                    type="text"
+                    value={editedTask.title}
+                    onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    value={editedTask.description}
+                    onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
+                  />
+                  <button onClick={() => handleUpdateTask(todo.id)}>Update</button>
+                  <button onClick={() => setEditingTask(null)}>Cancel</button>
+                </div>
+              ) : (
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={todo.status === 'completed'}
+                    onChange={() => handleCheckboxChange(todo.id)}
+                  />
+                  <strong>{todo.title}</strong>
+                  <p style={{ textDecoration: todo.status === 'completed' ? 'line-through' : 'none' }}>
+                    {todo.description}
+                  </p>
+                  <span>Status: {todo.status || "pending"}</span>
+                  <button onClick={() => handleEditTask(todo)}>Edit</button>
+                  <button onClick={() => handleDeleteTask(todo.id)}>Delete</button>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  
 
 export default DashboardPage;
