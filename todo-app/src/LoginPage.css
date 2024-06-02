@@ -53,7 +53,9 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .btn-submit:hover {
     background-color: #45a049;
   }
+  
+
   

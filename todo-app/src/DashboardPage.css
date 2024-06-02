@@ -14,10 +14,36 @@
   }
   
   .todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
-    width: 100%;
+  }
+  
+  .func {
+    display: flex; /* Make the func container a flex container */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Add space between func items */
+    margin-left: auto; /* Move func items to the right */
+  }
+  
+  .func button {
+    border: none;
+    cursor: pointer;
+  }
+  
+  .func button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  #status {
+    margin-left: 10px;
+  }
+  
+  #check {
+    margin-right: 10px; /* Add space between checkbox and task title */
   }
   

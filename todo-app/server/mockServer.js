@@ -39,7 +39,7 @@ app.post('/api/login', (req, res) => {
 app.get('/api/todos', jwtMiddleware, (req, res) => {
 
   const todos = [
-    { id: 1, title: 'Buy groceries', description: 'Buy milk, eggs, and bread', status: 'pending' },
+    { id: 1, title: 'Buy groceries', description: 'Buy milk, eggs, and bread', status: 'Pending' },
     
   ];
   res.json(todos);
