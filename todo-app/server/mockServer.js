@@ -15,7 +15,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Dummy users data 
 const users = [
-  { id: 1, username: 'user1', password: 'pass' },
+  { id: 1, username: 'user', password: 'pass' },
 ];
 
 const jwtSecret = 'secretcode';
