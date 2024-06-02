@@ -1,14 +1,48 @@
-import React, { useState } from 'react';
-import { todos as mockTodos } from './mockData';
+import React, { useState,useEffect } from 'react';
+// import { todos as mockTodos } from './mockData';
+import axios from 'axios';
 import './DashboardPage.css'; // Import CSS file
 import { DeleteIcon, SmallAddIcon, EditIcon,CloseIcon} from '@chakra-ui/icons'
 
 const DashboardPage = ({ setIsLoggedIn }) => {
-  const [todos, setTodos] = useState(mockTodos);
+  const [todos, setTodos] = useState([]);
   const [newTask, setNewTask] = useState({ title: '', description: '', status: 'Pending' });
   const [searchQuery, setSearchQuery] = useState('');
   const [editingTask, setEditingTask] = useState(null);
   const [editedTask, setEditedTask] = useState({ title: '', description: '', status: 'Pending' });
+  const [loading, setLoading] = useState(true); // Loading state for fetching todos
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const fetchTodos = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get JWT token from localStorage
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await axios.get('http://localhost:5000/api/todos', {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include JWT token in the request headers
+        },
+      });
+      setTodos(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching todos:', error);
+      // setError('Error fetching todos'); // Set error state
+      setLoading(false);
+    }
+  };
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {error}</div>; // Display error message
+  // }
 
   const handleAddTask = () => {
     if (newTask.title.trim() === '') {

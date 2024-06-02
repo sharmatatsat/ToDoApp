@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import './LoginPage.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-// import bg1 from './assets/bg1.jpeg'; // Import the image
- import bg6 from './assets/bg6-edited.jpeg';
-  // Import the image
- // Import the image
-// import bg4 from './assets/bg4.jpeg'; // Import the image
+import bg6 from './assets/bg6-edited.jpeg'; // Import the image
 
 const LoginPage = ({ handleLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when submitting the form
     try {
       const response = await axios.post('http://localhost:5000/api/login', { username, password });
       const { token } = response.data;
@@ -23,6 +21,8 @@ const LoginPage = ({ handleLogin }) => {
       history.push('/dashboard');
     } catch (error) {
       alert('Invalid username or password');
+    } finally {
+      setLoading(false); // Set loading back to false after the request completes
     }
   };
 
@@ -51,7 +51,10 @@ const LoginPage = ({ handleLogin }) => {
               placeholder="Password"
             />
           </div>
-          <button class = "btn-submit" type="submit">Login</button>
+          {/* Show loading animation when loading is true */}
+          <button className="btn-submit" type="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Login'}
+          </button>
         </form>
       </div>
       <div className="imageBox" style={{ backgroundImage: `url(${bg6})` }}>

@@ -74,7 +74,7 @@
     margin: 0px 0px;
     background-image: url('./assets/bg9.jpeg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; 
     margin-top: -6%;
     border-bottom: 2px solid black;
   }
@@ -90,6 +90,7 @@
     color: white;
     font-size: 12px;
     border-radius: 8px;
+    font-weight: bold;
  }
  .btn-logout:hover{
     background-color: red;

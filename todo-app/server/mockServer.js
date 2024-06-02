@@ -39,12 +39,14 @@ app.post('/api/login', (req, res) => {
 app.get('/api/todos', jwtMiddleware, (req, res) => {
 
   const todos = [
-    { id: 1, title: 'Buy groceries', description: 'Buy milk, eggs, and bread', status: 'Pending' },
+    { id: 1, title: 'Buy groceries', description: 'Buy Fruits and Veggies', status: 'Pending' },
+    { id: 2, title: 'ToDoApp', description: 'Complete Assignment', status: 'Pending' },
+
     
   ];
   res.json(todos);
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`); 
 });
