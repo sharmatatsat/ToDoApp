@@ -1,11 +1,11 @@
-/* LoginPage.css */
+
 .container {
     display: flex;
     height: 100vh;
   }
   
   .loginBox {
-    width: 40%; /* Adjust the width as needed */
+    width: 40%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,11 +20,11 @@
     border-left: 4px solid black;
   }
   
-  /* Additional styles for your login box */
+ 
   #loginText {
-    font-size: 2.4rem; /* Use relative units */
+    font-size: 2.4rem; 
     margin-bottom: 10%;
-    text-align: center; /* Center the text */
+    text-align: center; 
     margin-bottom: 12%;
   }
   
@@ -66,7 +66,7 @@
     text-align: center;
     letter-spacing: 2px;
     margin-top: 40%;
-    font-family: Ubuntu;
+    font-family: Lobster;
     font-size: 45px;
   }
   
@@ -75,7 +75,7 @@
     overflow: hidden;
     white-space: nowrap;
     margin: 40% auto;
-    letter-spacing: 0.15em; /* Adjust the letter spacing */
+    letter-spacing: 0.15em; 
     animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
   }
   
