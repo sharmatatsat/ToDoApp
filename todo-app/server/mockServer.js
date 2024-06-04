@@ -12,10 +12,9 @@ const PORT = 5000;
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://todoapp-3-0gtx.onrender.com'], // Allow requests from both origins
+  origin: ['http://localhost:3000', 'https://todoapp-3-0gtx.onrender.com'], 
 }));
-// app.use(cors(
-// ));
+
 
 // Dummy users data 
 const users = [
