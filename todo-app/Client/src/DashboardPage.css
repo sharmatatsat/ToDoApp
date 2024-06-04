@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Changed to flex-start to keep items starting from the top */
+    justify-content: flex-start; 
     min-height: 100vh;
     padding: 20px;
     background-image: url('./assets/bg11.jpeg');
-    padding-top: 80px; /* Added padding-top to avoid overlap with fixed navbar */
+    padding-top: 80px; 
   }
   
   .todo-list {
@@ -26,10 +26,10 @@
   }
   
   .func {
-    display: flex; /* Make the func container a flex container */
-    align-items: center; /* Center items vertically */
-    gap: 10px; /* Add space between func items */
-    margin-left: auto; /* Move func items to the right */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-left: auto; 
   }
   
   .func button {
@@ -52,16 +52,16 @@
 }
   
   #check {
-    margin-right: 10px; /* Add space between checkbox and task title */
+    margin-right: 10px; 
   }
   
 
   .todo-item.Completed {
-    background-color: #4CAF50; /* Green background for completed tasks */
+    background-color: #4CAF50; 
   }
   
   .todo-item.Pending {
-    background-color: yellow; /* Yellow background for pending tasks */
+    background-color: yellow; 
   }
 
   .navbar{
