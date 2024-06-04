@@ -10,7 +10,7 @@ const DashboardPage = ({ setIsLoggedIn }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [editingTask, setEditingTask] = useState(null);
   const [editedTask, setEditedTask] = useState({ title: '', description: '', status: 'Pending' });
-  const [loading, setLoading] = useState(true); // Loading state for fetching todos
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     fetchTodos();
@@ -34,7 +34,7 @@ const DashboardPage = ({ setIsLoggedIn }) => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching todos:', error);
-      // setError('Error fetching todos'); // Set error state
+      // setError('Error fetching todos'); 
       setLoading(false);
     }
   };
