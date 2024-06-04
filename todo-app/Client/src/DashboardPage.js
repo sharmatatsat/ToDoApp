@@ -23,6 +23,8 @@ const DashboardPage = ({ setIsLoggedIn }) => {
         throw new Error('No token found');
       }
 
+      console.log(token)
+      // const response = await axios.get('http://localhost:5000/api/todos', {
       const response = await axios.get('https://todoapp-1-57uv.onrender.com/api/todos', {
         headers: {
           Authorization: `Bearer ${token}`, // Include JWT token in the request headers

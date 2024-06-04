@@ -15,11 +15,13 @@ const LoginPage = ({ handleLogin }) => {
     setLoading(true); // Set loading to true when submitting the form
     try {
       const response = await axios.post('https://todoapp-1-57uv.onrender.com/api/login', { username, password });
+      // const response = await axios.post('http://localhost:5000/api/login', { username, password });
       const { token } = response.data;
       localStorage.setItem('token', token); 
       handleLogin(); 
       history.push('/dashboard');
     } catch (error) {
+      console.log(error)
       alert('Invalid username or password');
     } finally {
       setLoading(false); // Set loading back to false after the request completes
