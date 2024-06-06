@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LoginPage.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import bg6 from './assets/bg6-edited.jpeg'; // Import the image
+import bg6 from './assets/bg6-edited.jpeg'; 
 
 const LoginPage = ({ handleLogin }) => {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ const LoginPage = ({ handleLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when submitting the form
+    setLoading(true); 
     try {
       const response = await axios.post('https://todoapp-1-57uv.onrender.com/api/login', { username, password });
       // const response = await axios.post('http://localhost:5000/api/login', { username, password });
@@ -24,7 +24,7 @@ const LoginPage = ({ handleLogin }) => {
       console.log(error)
       alert('Invalid username or password');
     } finally {
-      setLoading(false); // Set loading back to false after the request completes
+      setLoading(false); 
     }
   };
 
@@ -53,7 +53,7 @@ const LoginPage = ({ handleLogin }) => {
               placeholder="Password"
             />
           </div>
-          {/* Show loading animation when loading is true */}
+          {}
           <button className="btn-submit" type="submit" disabled={loading}>
             {loading ? 'Loading...' : 'Login'}
           </button>

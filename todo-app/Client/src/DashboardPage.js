@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 // import { todos as mockTodos } from './mockData';
 import axios from 'axios';
-import './DashboardPage.css'; // Import CSS file
-import { DeleteIcon, SmallAddIcon, EditIcon,CloseIcon} from '@chakra-ui/icons'
+import './DashboardPage.css'; 
+import { DeleteIcon, SmallAddIcon, EditIcon,CloseIcon,WarningIcon,CheckIcon,SearchIcon} from '@chakra-ui/icons'
 
 const DashboardPage = ({ setIsLoggedIn }) => {
   const [todos, setTodos] = useState([]);
@@ -18,7 +18,7 @@ const DashboardPage = ({ setIsLoggedIn }) => {
 
   const fetchTodos = async () => {
     try {
-      const token = localStorage.getItem('token'); // Get JWT token from localStorage
+      const token = localStorage.getItem('token'); // Getting JWT token from localStorage
       if (!token) {
         throw new Error('No token found');
       }
@@ -119,9 +119,10 @@ const DashboardPage = ({ setIsLoggedIn }) => {
         {/* <h3>Search Tasks</h3> */}
         <input id="search"
           type="text"
-          placeholder="Search todos"
+          placeholder="Search todos" 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          
         />
       </div>
 
@@ -167,7 +168,8 @@ const DashboardPage = ({ setIsLoggedIn }) => {
                 <button className="func-edit btn-func" onClick={() => handleEditTask(todo)}><EditIcon /></button>
               )}
               <button className="func-delete btn-func" onClick={() => handleDeleteTask(todo.id)}><DeleteIcon /></button>
-              <span id="status" className={`todo-item ${todo.status || "Pending"}`}>Status: {todo.status || "Pending"}</span>
+              <span id="status" className={`todo-item ${todo.status || "Pending"}`}>{todo.status || "Pending"}</span>
+              {todo.status === "Completed" ? <CheckIcon color="green"/> : <WarningIcon color="rgb(203, 203, 8)"/>}
             </div>
           </li>
         ))}
